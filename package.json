@@ -1,0 +1,25 @@
+{
+  "name": "tortiapp",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Api para consumir en la aplicacion web y movil de TortiApp exclusivamente",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prestart": "chmod +x node_modules/.bin/ts-node",
+    "dev": "nodemon src/index.js",
+    "build": "npm run build"
+  },
+  "author": "Roberto Quijano",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.9.2",
+    "nodemon": "^3.1.0",
+    "promise-mysql": "^5.2.0",
+    "sequelize": "^6.37.1",
+    "types": "^0.1.1"
+  }
+}
