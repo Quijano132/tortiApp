@@ -1,6 +1,5 @@
 import express from 'express';
 import morgan from 'morgan';
-import { Deferrable } from 'sequelize';
 const app = express();
 //Routes import
 import UsuarioRoutes from "./routes/Usuario.route.js"
