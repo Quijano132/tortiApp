@@ -3,7 +3,7 @@ import{getConnection} from "../database/database.js";
 export const getClients = async (req, res) => {
     try {
         const connection = await getConnection();
-        const result = await connection.query("SELECT * FROM producto");
+        const result = await connection.query("SELECT * FROM Producto");
         
         const productoUnico = {};
 
@@ -31,7 +31,7 @@ export const getClient = async (req, res) => {
         const connection = await getConnection();
         const sanitizedId = connection.escape(id);
 
-       const [result] = await connection.query(`SELECT * FROM producto WHERE idProducto = ${sanitizedId}`,[id]);
+       const [result] = await connection.query(`SELECT * FROM Producto WHERE idProducto = ${sanitizedId}`,[id]);
         
 
         if (result.length > 0) {
@@ -65,7 +65,7 @@ export const addClient = async (req, res) => {
             connection.escape(stockP)
         ];
 
-        const query = `INSERT INTO producto (nombreP, precioP, stockP) VALUES (${escapedValues.join(', ')})`;
+        const query = `INSERT INTO Producto (nombreP, precioP, stockP) VALUES (${escapedValues.join(', ')})`;
 
         await connection.query(query);
 
@@ -99,7 +99,7 @@ export const updateClient = async (req, res) => {
         const escapestockP = connection.escape(stockP);
         
 
-        const query = `UPDATE producto SET 
+        const query = `UPDATE Producto SET 
                         nombreP = ${escapenombreP}, 
                         precioP = ${escapeprecioP}, 
                         stockP = ${escapestockP}
@@ -133,7 +133,7 @@ export const deleteClient = async (req, res) => {
         // Utilizar escape para el valor de id
         const escapedId = connection.escape(idNumber);
 
-        const query = `DELETE FROM producto WHERE idProducto = ${escapedId}`;
+        const query = `DELETE FROM Producto WHERE idProducto = ${escapedId}`;
         const result = await connection.query(query);
 
         if (result.affectedRows > 0) {

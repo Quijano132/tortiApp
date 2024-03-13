@@ -3,7 +3,7 @@ import{getConnection} from "../database/database.js";
 export const getClients = async (req, res) => {
     try {
         const connection = await getConnection();
-        const result = await connection.query("SELECT * FROM usuario");
+        const result = await connection.query("SELECT * FROM Usario");
 
         // Creamos un objeto para almacenar los usuarios únicos
         const usuariosUnicos = {};
@@ -34,7 +34,7 @@ export const getClient = async (req, res) => {
         const connection = await getConnection();
         const sanitizedId = connection.escape(id);
 
-       const [result] = await connection.query(`SELECT * FROM usuario WHERE idUsuario = ${sanitizedId}`,[id]);
+       const [result] = await connection.query(`SELECT * FROM Usuario WHERE idUsuario = ${sanitizedId}`,[id]);
         
 
         if (result.length > 0) {
@@ -70,7 +70,7 @@ export const addClient = async (req, res) => {
             connection.escape(contrasenaU)
         ];
 
-        const query = `INSERT INTO usuario (nombreU, apellidoU, correoU, numerocelU, contrasenaU) VALUES (${escapedValues.join(', ')})`;
+        const query = `INSERT INTO Usuario (nombreU, apellidoU, correoU, numerocelU, contrasenaU) VALUES (${escapedValues.join(', ')})`;
 
         await connection.query(query);
 
@@ -107,7 +107,7 @@ export const updateClient = async (req, res) => {
         const escapenumeroU = connection.escape(numerocelU);
         const escapecontrasenaU = connection.escape(contrasenaU);
 
-        const query = `UPDATE usuario SET 
+        const query = `UPDATE Usuario SET 
                         nombreU = ${escapenombreU}, 
                         apellidoU = ${escapeApellidoU}, 
                         correoU = ${escapecorreoU}, 
@@ -143,7 +143,7 @@ export const deleteClient = async (req, res) => {
         // Utilizar escape para el valor de id
         const escapedId = connection.escape(idNumber);
 
-        const query = `DELETE FROM usuario WHERE idUsuario = ${escapedId}`;
+        const query = `DELETE FROM Usuario WHERE idUsuario = ${escapedId}`;
         const result = await connection.query(query);
 
         if (result.affectedRows > 0) {
