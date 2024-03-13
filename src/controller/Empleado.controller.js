@@ -66,7 +66,7 @@ export const addClient = async (req, res) => {
             connection.escape(apellidoEMaterno)
         ];
 
-        const query = `INSERT INTO empleado (nombreE, apellidoE, numerocelE, apellidoEMaterno) VALUES (${escapedValues.join(', ')})`;
+        const query = `INSERT INTO Empleado (nombreE, apellidoE, numerocelE, apellidoEMaterno) VALUES (${escapedValues.join(', ')})`;
 
         await connection.query(query);
 
