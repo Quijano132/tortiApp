@@ -31,7 +31,7 @@ export const getClient = async (req, res) => {
         const connection = await getConnection();
         const sanitizedId = connection.escape(id);
 
-       const [result] = await connection.query(`SELECT * FROM empleado WHERE idEmpleado = ${sanitizedId}`,[id]);
+       const [result] = await connection.query(`SELECT * FROM Empleado WHERE idEmpleado = ${sanitizedId}`,[id]);
         
 
         if (result.length > 0) {
@@ -102,7 +102,7 @@ export const updateClient = async (req, res) => {
         const escapeapellidoEMaterno =connection.escape(apellidoEMaterno);
         
 
-        const query = `UPDATE empleado SET 
+        const query = `UPDATE Empleado SET 
                         nombreE = ${escapenombreE}, 
                         apellidoE = ${escapeapellidoE}, 
                         numerocelE = ${escapenumerocelE},
@@ -137,7 +137,7 @@ export const deleteClient = async (req, res) => {
         // Utilizar escape para el valor de id
         const escapedId = connection.escape(idNumber);
 
-        const query = `DELETE FROM empleado WHERE idEmpleado = ${escapedId}`;
+        const query = `DELETE FROM Empleado WHERE idEmpleado = ${escapedId}`;
         const result = await connection.query(query);
 
         if (result.affectedRows > 0) {
