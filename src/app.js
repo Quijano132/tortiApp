@@ -1,6 +1,6 @@
 import express from 'express';
 import morgan from 'morgan';
-import cors from 'cors'
+import cors from 'cors';
 const app = express();
 //Routes import
 import UsuarioRoutes from "./routes/Usuario.route.js"
