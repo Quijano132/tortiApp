@@ -31,7 +31,7 @@ export const getClient = async (req, res) => {
         const connection = await getConnection();
         const sanitizedId = connection.escape(id);
 
-       const [result] = await connection.query(`SELECT * FROM producto WHERE idProducto = ${sanitizedId}`,[id]);
+       const [result] = await connection.query(`SELECT * FROM Venta WHERE idVenta = ${sanitizedId}`,[id]);
         
 
         if (result.length > 0) {
@@ -40,7 +40,7 @@ export const getClient = async (req, res) => {
 
         } else {
         
-            res.status(404).json({ message: 'Producto no encontrado' });
+            res.status(404).json({ message: 'Venta no encontrado' });
         }
     } catch (error) {
 
@@ -51,9 +51,9 @@ export const getClient = async (req, res) => {
 
 export const addClient = async (req, res) => {
     try {
-        const {  idEmpleado, idProducto, precioVenta,cantidadVenta} = req.body;
+        const {  idEmpleado, idProducto, precioVenta,cantidadVenta, fechadeVenta} = req.body;
 
-        if ( idEmpleado === undefined || idProducto === undefined, precioVenta === undefined,cantidadVenta === undefined ) {
+        if ( idEmpleado === undefined || idProducto === undefined, precioVenta === undefined,cantidadVenta === undefined, fechadeVenta === undefined ) {
             res.status(400).json({ message: "Bad Request. Please fill all field" });
             return;
         }
@@ -63,10 +63,11 @@ export const addClient = async (req, res) => {
             connection.escape(idEmpleado),
             connection.escape(idProducto),
             connection.escape(precioVenta),
-            connection.escape(cantidadVenta)
+            connection.escape(cantidadVenta),
+            connection.escape(fechadeVenta)
         ];
 
-        const query = `INSERT INTO Venta (idEmpleado, idProducto, precioVenta,cantidadVenta) VALUES (${escapedValues.join(', ')})`;
+        const query = `INSERT INTO Venta (idEmpleado, idProducto, precioVenta,cantidadVenta, fechadeVenta) VALUES (${escapedValues.join(', ')})`;
 
         await connection.query(query);
 
@@ -75,6 +76,7 @@ export const addClient = async (req, res) => {
             idProducto, 
             precioVenta,
             cantidadVenta,
+            fechadeVenta,
             message: "Producto añadido"
         });
     } catch (error) {
@@ -86,9 +88,9 @@ export const addClient = async (req, res) => {
 export const updateClient = async (req, res) => {
     try {
         const { id } = req.params;
-        const { nombreP, precioP, stockP} = req.body;
+        const { idEmpleado, idProducto, precioVenta,cantidadVenta, fechadeVenta} = req.body;
 
-        if (id == undefined || nombreP == undefined || precioP == undefined || stockP == undefined ) {
+        if (id == undefined || idEmpleado == undefined || idProducto == undefined || precioVenta == undefined || cantidadVenta == undefined || fechadeVenta == undefined) {
             res.status(400).json({ message: "Bad Request. Please fill all field" });
             return;
         }
@@ -99,13 +101,17 @@ export const updateClient = async (req, res) => {
         const escapenombreP = connection.escape(nombreP);
         const escapeprecioP = connection.escape(precioP);
         const escapestockP = connection.escape(stockP);
+        const eescapefechadeVenta = connection.escape(fechadeVenta)
         
 
-        const query = `UPDATE producto SET 
-                        nombreP = ${escapenombreP}, 
-                        precioP = ${escapeprecioP}, 
-                        stockP = ${escapestockP}
-                        WHERE idProducto = ${id}`;
+        const query = `UPDATE Venta SET 
+                        idEmpleado = ${idEmpleado}, 
+                        idProducto = ${idProducto}, 
+                        precioVenta = ${precioVenta},
+                        cantidadVenta =${cantidadVenta},
+                        fechadeVenta = ${fechadeVenta}
+
+                        WHERE idVenta = ${id}`;
 
         const result = await connection.query(query);
 
@@ -135,13 +141,13 @@ export const deleteClient = async (req, res) => {
         // Utilizar escape para el valor de id
         const escapedId = connection.escape(idNumber);
 
-        const query = `DELETE FROM producto WHERE idProducto = ${escapedId}`;
+        const query = `DELETE FROM Venta WHERE idVenta = ${escapedId}`;
         const result = await connection.query(query);
 
         if (result.affectedRows > 0) {
-            res.json({ message: "Producto eliminado exitosamente" });
+            res.json({ message: "Venta eliminda exitosamente" });
         } else {
-            res.status(404).json({ message: "Producto eliminado satisfactoriamente..." });
+            res.status(404).json({ message: "Venta eliminada satisfactoriamente..." });
         }
     } catch (error) {
         res.status(500).json({ error: error.message });
