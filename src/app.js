@@ -6,6 +6,7 @@ const app = express();
 import UsuarioRoutes from "./routes/Usuario.route.js"
 import productoRoutes from "./routes/Producto.route.js"
 import empleadoRoutes from "./routes/Empleado.route.js"
+import ventaRoutes from './routes/Venta.route.js'
 
 //settings
 app.set('port', 4000)
