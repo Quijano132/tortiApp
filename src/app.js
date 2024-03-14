@@ -29,5 +29,7 @@ app.use((err, req, res, next)=> {
 app.use("/api/Usuarios", UsuarioRoutes)
 app.use("/api/Producto", productoRoutes)
 app.use("/api/Empleados", empleadoRoutes)
+app.use('/api/Venta',ventaRoutes)
+
 
 export default app;
