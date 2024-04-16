@@ -184,6 +184,5 @@ export const methods={
     getClients,
     addClient,
     updateClient,
-    deleteClient,
-    login
+    deleteClient
 };

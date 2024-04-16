@@ -10,7 +10,6 @@ router.get("/:id", UsuarioController.getClient);
 router.post("/", UsuarioController.addClient);
 router.put("/:id", UsuarioController.updateClient);
 router.delete("/:id", UsuarioController.deleteClient);
-router.post("/login", UsuarioController.login)
 
 
 export default router;
