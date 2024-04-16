@@ -7,7 +7,6 @@ import UsuarioRoutes from "./routes/Usuario.route.js"
 import productoRoutes from "./routes/Producto.route.js"
 import empleadoRoutes from "./routes/Empleado.route.js"
 import ventaRoutes from './routes/Venta.route.js'
-import loginRoutes from './routes/login.route.js'
 
 
 //settings
@@ -33,7 +32,7 @@ app.use("/api/Usuarios", UsuarioRoutes)
 app.use("/api/Producto", productoRoutes)
 app.use("/api/Empleados", empleadoRoutes)
 app.use('/api/Venta',ventaRoutes)
-app.use('/api/login',loginRoutes)
+
 
 
 export default app;
