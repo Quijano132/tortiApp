@@ -1,5 +1,5 @@
 import { request, response, Router } from "express";
-import {methods as UsuarioController } from "../controller/Usuario.controller.js"
+import {login, methods as UsuarioController } from "../controller/Usuario.controller.js"
 
 
 const router=Router();
@@ -10,6 +10,7 @@ router.get("/:id", UsuarioController.getClient);
 router.post("/", UsuarioController.addClient);
 router.put("/:id", UsuarioController.updateClient);
 router.delete("/:id", UsuarioController.deleteClient);
+router.post("/login", UsuarioController.login)
 
 
 export default router;
