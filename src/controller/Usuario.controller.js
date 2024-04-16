@@ -3,7 +3,7 @@ import{getConnection} from "../database/database.js";
 export const getClients = async (req, res) => {
     try {
         const connection = await getConnection();
-        const result = await connection.query("SELECT * FROM Usario");
+        const result = await connection.query("SELECT * FROM Usuario");
 
         // Creamos un objeto para almacenar los usuarios únicos
         const usuariosUnicos = {};
