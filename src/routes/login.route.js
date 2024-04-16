@@ -8,4 +8,4 @@ const usuarioController = require('./usuarioController');
 router.get('/', usuarioController.getUsuarios);
 router.post('/', usuarioController.crearUsuario);
 
-module.exports = router;
+export default usuarioController;
