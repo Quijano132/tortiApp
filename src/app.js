@@ -14,7 +14,6 @@ app.set('port', 4000)
 
 
 //Middleware
-app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
