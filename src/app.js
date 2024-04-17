@@ -14,6 +14,7 @@ import productoRoutes from "./routes/Producto.route.js"
 import empleadoRoutes from "./routes/Empleado.route.js"
 import ventaRoutes from './routes/Venta.route.js'
 import loginRoutes from './routes/login.route.js'
+import clienteRoutes from './routes/Cliente.route.js'
 
 //settings
 app.set('port', 4000)
@@ -24,6 +25,7 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
+
 
 app.get('/', (req, res )=>{
     res.render('index', {msg: 'Mensaje desde node'})
@@ -48,7 +50,7 @@ app.use("/api/Producto", productoRoutes)
 app.use("/api/Empleados", empleadoRoutes)
 app.use('/api/Venta',ventaRoutes)
 app.use("/api/login",loginRoutes)
-
+app.use('/api/Cliente',clienteRoutes)
 
 
 export default app;
