@@ -4,7 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv'
 import bcryptjs from 'bcryptjs'
 import session from 'express-session';
-import { Connection } from './database/database.js';
+import  Connection  from './database/database.js';
 
 
 dotenv.config({path: './env/.env'})
