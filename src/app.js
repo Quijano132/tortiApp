@@ -1,6 +1,13 @@
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
+
+
+
+
+
+const dotenv = require('dotenv')
+dotenv.config({path: './env/.env'})
 const app = express();
 //Routes import
 import UsuarioRoutes from "./routes/Usuario.route.js"
@@ -12,7 +19,22 @@ import loginRoutes from './routes/login.route.js'
 
 //settings
 app.set('port', 4000)
+app.set('view engine', 'ejs')
 
+const bcryptjs = require ('bcryptjs')
+
+const session =  require('express-session')
+
+app.use(session({
+    secret: '12345678',
+    resave: true,
+    saveUninitialized: true
+}));
+const connection = require('./database/database.js')
+
+app.get('/', (req, res )=>{
+    res.render('index', {msg: 'Mensaje desde node'})
+})
 
 //Middleware
 app.use(morgan('dev'));
