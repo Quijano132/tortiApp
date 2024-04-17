@@ -24,7 +24,6 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
-const connection = require('./database/database.js')
 
 app.get('/', (req, res )=>{
     res.render('index', {msg: 'Mensaje desde node'})
