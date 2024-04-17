@@ -2,6 +2,8 @@ import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import dotenv from 'dotenv'
+import bcryptjs from 'bcryptjs'
+import session from 'express-session';
 
 
 dotenv.config({path: './env/.env'})
@@ -13,14 +15,9 @@ import empleadoRoutes from "./routes/Empleado.route.js"
 import ventaRoutes from './routes/Venta.route.js'
 import loginRoutes from './routes/login.route.js'
 
-
 //settings
 app.set('port', 4000)
 app.set('view engine', 'ejs')
-
-const bcryptjs = require ('bcryptjs')
-
-const session =  require('express-session')
 
 app.use(session({
     secret: '12345678',
