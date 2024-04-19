@@ -9,7 +9,7 @@ export const login = async (req, res) => {
         }
         
         const connection = await getConnection();
-        const [result] = await connection.query("SELECT * FROM Usuario WHERE nombreU = ? AND contrasenaU = ?", [usuario, contraseña]);
+        const [result] = await connection.query("SELECT * FROM Usuario WHERE correoU = ? AND contrasenaU = ?", [usuario, contraseña]);
         
         if (result.length > 0) {
             res.status(200).json({ message: 'Inicio de sesión exitoso', usuario: result[0] });
@@ -21,6 +21,7 @@ export const login = async (req, res) => {
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 };
+
 
 
 export const methods={
