@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
@@ -16,7 +15,9 @@ import empleadoRoutes from "./routes/Empleado.route.js"
 import ventaRoutes from './routes/Venta.route.js'
 import loginRoutes from './routes/login.route.js'
 import clienteRoutes from './routes/Cliente.route.js'
-
+import routerAuth from './routes/auth.route.js'
+import basicAuth from './routes/basicAuth.route.js'
+import app from './index.js'
 //settings
 app.set('port', 4000)
 app.set('view engine', 'ejs')
@@ -52,16 +53,8 @@ app.use("/api/Empleados", empleadoRoutes)
 app.use('/api/Venta',ventaRoutes)
 app.use("/api/login",loginRoutes)
 app.use('/api/Cliente',clienteRoutes)
+app.use('/api/auth', routerAuth);
+app.use('/api/basicAuth', basicAuth);
 
 
 export default app;
-=======
-require('dotenv').config();
-
-const Server = require('./models/server/config');
-const server = new Server();
-
-server.listen();
-module.exports.handler = server.returnSrv();
-
->>>>>>> 791f1267550d3a756e78c5f75b601c1abb24c456
