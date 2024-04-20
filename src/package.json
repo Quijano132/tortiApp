@@ -1,6 +1,7 @@
 {
   "name": "back-api-catalogo-abierto",
   "version": "1.0.0",
+    "type": "module",
   "description": "api para la consulta del catálogo de dispositivos",
   "dependencies": {
     "@braintree/sanitize-url": "^6.0.4",
