@@ -1,23 +1,19 @@
+const { sequelize } = require("./database/database.js");
+const app = require("./app.js");
+const { port } = require("./environmentVariable.js");
 
-import { sequelize } from "./database/database.js";
-import app from "./app.js"
-import { port } from "./envairomentVariable.js";
-
-
-const main= async ()=>{
-    try{
-        sequelize.sync({force : true});
-        app.listen(port, () =>{
+const main = async () => {
+    try {
+        await sequelize.sync({ force: true }); // Usamos 'await' para asegurarnos de que la sincronización de la base de datos se complete antes de continuar
+        app.listen(port, () => {
             console.log(
-                `server listen on port: ${port},`,
-                "url: http://localhost:4000/tortiapp"
+                `El servidor está escuchando en el puerto: ${port}`,
+                "URL: http://localhost:4000/tortiapp"
             );
         });
-    } catch (err){
+    } catch (err) {
         console.log(err);
     }
- 
-
 };
 
 main();
