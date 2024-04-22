@@ -1,25 +1,24 @@
-<<<<<<< HEAD
-import express from 'express';
-import morgan from 'morgan';
-import cors from 'cors';
-import dotenv from 'dotenv'
-import bcryptjs from 'bcryptjs'
-import session from 'express-session';
+const express = require('express');
+const morgan = require('morgan');
+const cors = require('cors');
+const dotenv = require('dotenv');
+const bcryptjs = require('bcryptjs');
+const session = require('express-session');
 
-
-dotenv.config({path: './env/.env'})
+dotenv.config({ path: './env/.env' });
 const app = express();
-//Routes import
-import UsuarioRoutes from "./routes/Usuario.route.js"
-import productoRoutes from "./routes/Producto.route.js"
-import empleadoRoutes from "./routes/Empleado.route.js"
-import ventaRoutes from './routes/Venta.route.js'
-import loginRoutes from './routes/login.route.js'
-import clienteRoutes from './routes/Cliente.route.js'
 
-//settings
-app.set('port', 4000)
-app.set('view engine', 'ejs')
+// Importación de rutas
+const UsuarioRoutes = require('./routes/Usuario.route');
+const productoRoutes = require('./routes/Producto.route');
+const empleadoRoutes = require('./routes/Empleado.route');
+const ventaRoutes = require('./routes/Venta.route');
+const loginRoutes = require('./routes/login.route');
+const clienteRoutes = require('./routes/Cliente.route');
+
+// Configuraciones
+app.set('port', 4000);
+app.set('view engine', 'ejs');
 
 app.use(session({
     secret: '12345678',
@@ -27,41 +26,29 @@ app.use(session({
     saveUninitialized: true
 }));
 
+app.get('/', (req, res) => {
+    res.render('index', { msg: 'Mensaje desde node' });
+});
 
-app.get('/', (req, res )=>{
-    res.render('index', {msg: 'Mensaje desde node'})
-})
-
-//Middleware
+// Middleware
 app.use(morgan('dev'));
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
 
-app.use((err, req, res, next)=> {
-    if (err instanceof SyntaxError && err.status== 400 && 'body' in err){
-        res.status(400).json({message: "Algo fallo y no sabemos qué fue."});
-
+app.use((err, req, res, next) => {
+    if (err instanceof SyntaxError && err.status == 400 && 'body' in err) {
+        res.status(400).json({ message: "Algo falló y no sabemos qué fue." });
     }
 });
 
-//Routes
-app.use("/api/Usuarios", UsuarioRoutes)
-app.use("/api/Producto", productoRoutes)
-app.use("/api/Empleados", empleadoRoutes)
-app.use('/api/Venta',ventaRoutes)
-app.use("/api/login",loginRoutes)
-app.use('/api/Cliente',clienteRoutes)
+// Rutas
+app.use("/api/Usuarios", UsuarioRoutes);
+app.use("/api/Producto", productoRoutes);
+app.use("/api/Empleados", empleadoRoutes);
+app.use('/api/Venta', ventaRoutes);
+app.use("/api/login", loginRoutes);
+app.use('/api/Cliente', clienteRoutes);
 
+module.exports = app;
 
-export default app;
-=======
-require('dotenv').config();
-
-const Server = require('./models/server/config');
-const server = new Server();
-
-server.listen();
-module.exports.handler = server.returnSrv();
-
->>>>>>> 791f1267550d3a756e78c5f75b601c1abb24c456
