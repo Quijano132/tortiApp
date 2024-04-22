@@ -16,3 +16,5 @@ export const getConnection = async () => {
     throw error;
   }
 };
+
+export default getConnection;
