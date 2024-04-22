@@ -1,12 +1,12 @@
 import { Sequelize } from 'sequelize';
 
-const sequelize = new Sequelize('b0hqlhkhmg0xm49clruh', 'uaxytqzwqmyzm6ir', 'ONSomhSkiSzjZ0h5ACWX', {
+export const sequelize = new Sequelize('b0hqlhkhmg0xm49clruh', 'uaxytqzwqmyzm6ir', 'ONSomhSkiSzjZ0h5ACWX', {
   host: 'b0hqlhkhmg0xm49clruh-mysql.services.clever-cloud.com',
   dialect: 'mysql',
   connectTimeout: 30000,
 });
 
-const getConnection = async () => {
+export const getConnection = async () => {
   try {
     await sequelize.authenticate();
     console.log('Conexión a la base de datos exitosa');
@@ -16,6 +16,3 @@ const getConnection = async () => {
     throw error;
   }
 };
-
-export default getConnection;
-export { sequelize };
