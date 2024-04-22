@@ -2,7 +2,6 @@
 import { sequelize } from "./database/database.js";
 import app from "./app.js"
 import { port } from "./envairomentVariable.js";
-import basicAuth from './helpers/basic-auth.js';
 
 
 const main= async ()=>{
