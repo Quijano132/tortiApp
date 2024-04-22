@@ -18,3 +18,4 @@ const getConnection = async () => {
 };
 
 export default getConnection;
+export { sequelize };
