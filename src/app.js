@@ -50,5 +50,4 @@ app.use('/api/Venta', ventaRoutes);
 app.use("/api/login", loginRoutes);
 app.use('/api/Cliente', clienteRoutes);
 
-module.exports = app;
-
+export default app;
