@@ -4,6 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import bcryptjs from 'bcryptjs';
 import session from 'express-session';
+import { fileURLToPath } from 'url'; // Importa el método fileURLToPath
 import path from 'path'; // Importa el módulo path
 
 dotenv.config({ path: './env/.env' });
@@ -32,6 +33,8 @@ app.use(express.json());
 app.use(cors());
 
 // Configurar el motor de plantillas EJS
+const __filename = fileURLToPath(import.meta.url); // Obtén el nombre del archivo actual
+const __dirname = path.dirname(__filename); // Obtén el directorio actual
 app.set('views', path.join(__dirname, 'views')); // Establece la carpeta de vistas
 app.set('view engine', 'ejs'); // Establece el motor de plantillas
 
@@ -57,4 +60,5 @@ app.use("/api/login", loginRoutes);
 app.use('/api/Cliente', clienteRoutes);
 
 export default app;
+
 
