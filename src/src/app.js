@@ -27,6 +27,12 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*'); // Esto permitirá todas las solicitudes desde cualquier origen
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'); // Esto permitirá los métodos HTTP especificados
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Esto permitirá los encabezados especificados
+    next();
+});
 
 
 app.get('/', (req, res )=>{
